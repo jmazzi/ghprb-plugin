@@ -57,7 +57,7 @@ public class GhprbBuilds {
 	public void onStarted(AbstractBuild build) {
 		GhprbCause c = getCause(build);
 		if(c == null) return;
-		
+
 		repo.createCommitStatus(build, GHCommitState.PENDING, (c.isMerged() ? "Merged build started." : "Build started."),c.getPullID());
 		try {
 			build.setDescription("<a href=\"" + repo.getRepoUrl()+"/pull/"+c.getPullID()+"\">Pull request #"+c.getPullID()+"</a>");
@@ -88,7 +88,10 @@ public class GhprbBuilds {
 			} else {
 				msg = GhprbTrigger.getDscp().getMsgFailure();
 			}
-			// repo.addComment(c.getPullID(), msg + "\nRefer to this link for build results: " + publishedURL + build.getUrl());
+
+      if (GhprbTrigger.getDscp().isUseComments()) {
+        repo.addComment(c.getPullID(), msg + "\nRefer to this link for build results: " + publishedURL + build.getUrl());
+      }
 		}
 
 		// close failed pull request automatically
