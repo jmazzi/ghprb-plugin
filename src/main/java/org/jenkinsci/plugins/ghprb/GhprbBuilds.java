@@ -88,7 +88,7 @@ public class GhprbBuilds {
 			} else {
 				msg = GhprbTrigger.getDscp().getMsgFailure();
 			}
-			repo.addComment(c.getPullID(), msg + "\nRefer to this link for build results: " + publishedURL + build.getUrl());
+			// repo.addComment(c.getPullID(), msg + "\nRefer to this link for build results: " + publishedURL + build.getUrl());
 		}
 
 		// close failed pull request automatically
