@@ -101,7 +101,7 @@ public class GhprbRepository {
 
 	public void createCommitStatus(AbstractBuild<?,?> build, GHCommitState state, String message, int id){
 		String sha1 = build.getCause(GhprbCause.class).getCommit();
-		createCommitStatus(sha1, state, Jenkins.getInstance().getRootUrl() + build.getUrl(), message, id);
+		createCommitStatus(sha1, state, Jenkins.getInstance().getRootUrl() + build.getUrl() + "console", message, id);
 	}
 
 	public void createCommitStatus(String sha1, GHCommitState state, String url, String message, int id) {
