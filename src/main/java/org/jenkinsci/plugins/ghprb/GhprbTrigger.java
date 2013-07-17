@@ -111,6 +111,7 @@ public final class GhprbTrigger extends Trigger<AbstractProject<?, ?>> {
 
 	@Override
 	public void run() {
+    if (ml == null) return;
 		ml.run();
 		DESCRIPTOR.save();
 	}
